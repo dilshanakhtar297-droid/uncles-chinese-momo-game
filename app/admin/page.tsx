@@ -53,14 +53,28 @@ export default function AdminPage() {
     }
   }, []);
 
-  const handlePasswordSubmit = () => {
-    if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
-      setAuthenticated(true);
-      fetchStats();
-      setPassword('');
-      toast.success('Admin access granted');
-    } else {
-      toast.error('Invalid password');
+  const handlePasswordSubmit = async () => {
+    try {
+      const response = await fetch('/api/auth/verify-admin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setAuthenticated(true);
+        fetchStats();
+        setPassword('');
+        toast.success('Admin access granted');
+      } else {
+        toast.error('Invalid password');
+        setPassword('');
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+      toast.error('Authentication failed');
       setPassword('');
     }
   };
