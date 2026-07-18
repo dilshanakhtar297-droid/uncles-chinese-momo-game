@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #FFF5E1 0%, #FFE5B4 100%);
+}
+
+@keyframes sway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+.lantern {
+  animation: sway 4s ease-in-out infinite;
+}
+
+.bamboo {
+  background: linear-gradient(90deg, #8b7355 0%, #a0826d 50%, #8b7355 100%);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes steam {
+  0% { opacity: 0; transform: translateY(0) scaleX(1); }
+  50% { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-30px) scaleX(1.5); }
+}
+
+.steam { animation: steam 2s ease-out infinite; }
+
+@keyframes float-particle {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+.sesame-particle { animation: float-particle 3s ease-out forwards; }
+
+.golden-glow {
+  box-shadow: 0 0 20px rgba(255, 209, 102, 0.8);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-5px, 0); }
+  50% { transform: translate(5px, 0); }
+  75% { transform: translate(-5px, 0); }
+}
+
+.shake { animation: shake 0.3s; }
+
+.button-hover {
+  @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+}
+
+.card-premium {
+  @apply rounded-2xl shadow-xl border-2 border-primary transition-all hover:shadow-2xl hover:-translate-y-1;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #D62828 0%, #FF6B6B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
